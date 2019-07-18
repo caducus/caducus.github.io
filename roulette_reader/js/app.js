@@ -22,6 +22,11 @@ $(() => {
     $description.toggleClass("hidden");
   };
 
+  // an event handler assigned to the images generate in the bookCards
+  const saveBook = () => {
+    console.log("I'm a real boy now!");
+  };
+
   // generates a list of 10 books based on the user's input
   const generateList = (event) => {
     // prevent reloading
@@ -44,6 +49,8 @@ $(() => {
           $imageDiv = $("<div>").addClass("imageDiv");
           // create image
           $image = $("<img>").attr("src", data.items[i].volumeInfo.imageLinks.thumbnail).addClass("bookThumbnail");
+          // add event listener to image
+          $image.on("click", saveBook);
           // create outerContainer div, which holds all other information
           $outerContainer = $("<div>").addClass("outerContainer");
           // create h2 title
