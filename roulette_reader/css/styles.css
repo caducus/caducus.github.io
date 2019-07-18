@@ -33,7 +33,26 @@
   /* =========== Navigation =========== */
 
     nav {
+      text-align: center;
       background-color: #e8d6d5;
+    }
+
+    #inputText {
+      width: 30%;
+      height: 30px;
+      margin-right: 2%;
+    }
+
+    #generate {
+      background-color: #bc8682;
+      border: 1px solid white;
+      border-radius: 2px;
+      color: white;
+      padding: 10px 30px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 2%;
+      margin-bottom: 2%;
     }
 
   /* =========== Main Content =========== */
