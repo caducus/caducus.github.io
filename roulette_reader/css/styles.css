@@ -3,9 +3,10 @@
 ========================= */
 
   * {
-    border: 1px solid gold;
+    /* border: 1px solid gold; */
     /* font-family: 'Comfortaa', cursive;
-    font-family: 'Special Elite' */
+    font-family: 'Special Elite'
+    #82b8bc */
   }
 
   body {
@@ -18,6 +19,8 @@
       margin: 0;
       width: 100%;
       background-color: #EEEAE9;
+      padding-top: 2%;
+      padding-bottom: 2%;
     }
 
     h1 {
@@ -39,6 +42,60 @@
       background-color: #e8d6d5;
       margin-top: 2%;
       margin-bottom: 2%;
+    }
+
+    /* =========== Generated Cards =========== */
+
+    .card {
+      display: flex;
+      margin-top: 2%;
+      border-top: 2px solid #bc8682;
+      border-bottom: 2px solid #bc8682;
+    }
+
+    .imageDiv {
+      margin: 0 auto;
+      width: 20%
+    }
+
+    .bookThumbnail {
+      width: 100%;
+    }
+
+    .outerContainer {
+      width: 78%;
+      margin-left: 2%;
+      margin-right: 2%;
+    }
+
+    .innerContainer {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    h2, h3, p {
+      font-family: 'Comfortaa', cursive;
+    }
+
+    .outerContainer button {
+      background-color: #82b8bc;
+      border: 1px solid white;
+      border-radius: 2px;
+      color: white;
+      padding: 10px 10px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width:25%;
+    }
+
+    .alignRight {
+      text-align: right;
+    }
+
+    .hidden {
+      display: none;
     }
 
   /* =========== Footer =========== */
