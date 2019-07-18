@@ -5,18 +5,24 @@ $(() => {
   // Global Variables
   // ===========================
 
+  // the api key needed to access google books
   const apiKey = "AIzaSyDxujG3pEo1LFJPKORWqOb0tto-mDuYm5Q";
 
   // ===========================
   // Functions
   // ===========================
 
+  // an event handler assigned to the buttons generated in the bookCards
   const showDescription = (event) => {
+    // prevent reloading
     event.preventDefault();
+    // selects the description box
     $description = $(event.currentTarget).parent().siblings(".description");
+    // toggles the hidden class on and off the description box
     $description.toggleClass("hidden");
   };
 
+  // generates a list of 10 books based on the user's input
   const generateList = (event) => {
     // prevent reloading
     event.preventDefault();
@@ -30,7 +36,7 @@ $(() => {
       url: "https://www.googleapis.com/books/v1/volumes?q=" + keyword + "&key=" + apiKey
     }).then(
       (data) => {
-        // loops through the 10 results
+        // loop creates the list of 10 bookCards and appends them to the #information div
         for (let i = 0; i < 10; i++) {
           // create an empty card
           $card = $("<div>").addClass("card");
@@ -53,7 +59,7 @@ $(() => {
           $button = $("<button>").text("show description");
           // add event listener to button
           $button.on("click", showDescription);
-          //create the div that holds the description
+          //create the div that holds the description, and create the description
           $descriptionDiv = $("<div>").addClass("description").addClass("hidden");
           $description = $("<p>").text(data.items[i].volumeInfo.description || "No description is available.");
           // append the elements to respective parents
@@ -62,7 +68,7 @@ $(() => {
           $div.append($author).append($category);
           $descriptionDiv.append($description);
           $imageDiv.append($image);
-          // append the created elements to the $card
+          // append the completed parent/child elements to the $card
           $card.append($imageDiv).append($outerContainer);
           // append the card to the page
           $("#information").append($card);
@@ -80,6 +86,7 @@ $(() => {
   // Event Listeners / Handlers
   // ===========================
 
+  // tied to the "submit" button on the html upon load
   $("#generate").on("click", generateList);
 
 });
