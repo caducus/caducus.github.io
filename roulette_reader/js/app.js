@@ -8,6 +8,18 @@ $(() => {
   // the api key needed to access google books
   const apiKey = "AIzaSyDxujG3pEo1LFJPKORWqOb0tto-mDuYm5Q";
 
+  // counter variable for the current image index of the image carousel
+  let currentImgIndex = 0;
+
+  // the array that holds the temporary bookCard data
+  let bookCardArray = [];
+
+  // the array to hold the images in the carousel
+  const imageCarouselArray = [];
+
+  // the array that holds the corrosponding data for the book images saved in the carousel
+  const dataCarouselArray = [];
+
   // ===========================
   // Functions
   // ===========================
@@ -22,9 +34,25 @@ $(() => {
     $description.toggleClass("hidden");
   };
 
+  const generateMyBook = () => {
+    console.log("does something");
+  };
+
   // an event handler assigned to the images generate in the bookCards
-  const saveBook = () => {
-    console.log("I'm a real boy now!");
+  const saveBook = (event) => {
+    // prevent reloading
+    event.preventDefault();
+    //get the value from the image, which corrosponds with the data in the bookCardArray
+    const selectedCard = $(event.currentTarget).attr("value");
+    // select the whole card
+    $card = $(event.currentTarget).parent().parent();
+    // remove the card from the list of bookCards
+    $card.remove();
+    // push the information from the card removed to the image/data CarouselArrays
+    imageCarouselArray.push(bookCardArray[selectedCard].thumbnail);
+    dataCarouselArray.push(bookCardArray[selectedCard]);
+    // invoke the generateMyBook function
+    generateMyBook();
   };
 
   // generates a list of 10 books based on the user's input
@@ -33,6 +61,8 @@ $(() => {
     event.preventDefault();
     // clear old cards from the #information div
     $("#information").empty();
+    // empties the bookCardArray
+    bookCardArray = [];
     // get the user's keyword from the input
     const keyword = $("input[type='text']").val();
 
@@ -43,12 +73,22 @@ $(() => {
       (data) => {
         // loop creates the list of 10 bookCards and appends them to the #information div
         for (let i = 0; i < 10; i++) {
+          // creating the bookObject for the global array starts here
+          const bookObject = {
+            title: data.items[i].volumeInfo.title || "No title is available.",
+            author: data.items[i].volumeInfo.authors || "No author is available.",
+            genre: data.items[i].volumeInfo.categories || "No category is available.",
+            description: data.items[i].volumeInfo.description || "No description is available.",
+            thumbnail: data.items[i].volumeInfo.imageLinks.thumbnail
+          };
+          bookCardArray.push(bookObject);
+          // creating the bookCard on the html starts here
           // create an empty card
           $card = $("<div>").addClass("card");
           // create a div to hold an image
           $imageDiv = $("<div>").addClass("imageDiv");
           // create image
-          $image = $("<img>").attr("src", data.items[i].volumeInfo.imageLinks.thumbnail).addClass("bookThumbnail");
+          $image = $("<img>").attr("src", data.items[i].volumeInfo.imageLinks.thumbnail).addClass("bookThumbnail").attr("value", i);
           // add event listener to image
           $image.on("click", saveBook);
           // create outerContainer div, which holds all other information
@@ -86,7 +126,10 @@ $(() => {
         console.log("Houston, we have a problem.");
       }
     );
+  };
 
+  const cycleImages = () => {
+    console.log("I have been clicked.");
   };
 
   // ===========================
@@ -95,5 +138,9 @@ $(() => {
 
   // tied to the "submit" button on the html upon load
   $("#generate").on("click", generateList);
+
+  // tied to the next button for the image carousel
+  $("#next").on("click", cycleImages);
+
 
 });
