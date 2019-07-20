@@ -29,6 +29,31 @@ $(() => {
     $description.toggleClass("hiddenText");
   };
 
+  // an event handler assigned to the images generated in the myBookCards
+  // allows the user to remove the current card from their selected items
+  const removeCard = event => {
+  //   // empty #current-book div
+  //   $("#current-book").empty();
+  //   // find the src of the currentImage
+  //   let srcTag = $(".showImage").children().attr("src");
+  //   // declare currentImageIndex to a default of 0
+  //   let currentImageIndex = 0;
+  //   // loop through the dataCarouselArray
+  //   for (let i = 0; i < dataCarouselArray.length; i++) {
+  //     // determines position of currentImageIndex
+  //     if (dataCarouselArray[i].thumbnail === srcTag) {
+  //       // if the previous button was clicked
+  //       currentImageIndex = i - 1;
+  //     };
+  //     console.log(i);
+  //   };
+  //   // delete the data from the dataCarouselArray
+  //   dataCarouselArray.slice(currentImageIndex, 1);
+  //   // delete the currentImage
+  //   $(event.currentTarget).remove();
+  //   // put up the first image in the array
+  };
+
   // function that creates myBookCards in the html
   // takes a parameter of currentBook, which is the array position of the object in the dataCarouselArray
   const generateCard = (currentBook) => {
@@ -72,12 +97,14 @@ $(() => {
       // if there is more than one book covers in the carousel
       if (currentBook > 0) {
         // hide the previous image
-        $("#carousel-images").children().eq(dataCarouselArray.length - 2).removeClass("showImage").addClass("hideImage");
+        $("#carousel-images").children().removeClass("showImage").addClass("hideImage");
       };
     // create a div to hold the image
     $bookCoverDiv = $("<div>").addClass("bookCoverDiv").addClass("showImage");
     // add the correct source to the image element
     $bookCover.attr("src", (dataCarouselArray[currentBook].thumbnail));
+    // add the event listener to delete this card to the image
+    $bookCover.on("click", removeCard);
     // append the image to the bookCoverDiv
     $bookCoverDiv.append($bookCover)
     // append the bookCover to the proper place
@@ -225,6 +252,12 @@ $(() => {
     };
   };
 
+  // an event handler that opens the "about" modal
+  const modal = () => {
+    // makes the modal visible on click
+    $("#modalAbout").toggleClass("hiddenModal");
+  };
+
   // ===========================
   // Event Listeners / Handlers
   // ===========================
@@ -237,5 +270,11 @@ $(() => {
 
   // tied to the previous button for the image carousel
   $("#previous").on("click", cycleImages);
+
+  // tied to the about button, opens the modal
+  $("#about").on("click", modal);
+
+  // tied to the close button, closes the modal
+  $("#closeModal").on("click", modal);
 
 });
