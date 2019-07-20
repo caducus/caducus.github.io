@@ -31,27 +31,35 @@ $(() => {
 
   // an event handler assigned to the images generated in the myBookCards
   // allows the user to remove the current card from their selected items
-  const removeCard = event => {
-  //   // empty #current-book div
-  //   $("#current-book").empty();
-  //   // find the src of the currentImage
-  //   let srcTag = $(".showImage").children().attr("src");
-  //   // declare currentImageIndex to a default of 0
-  //   let currentImageIndex = 0;
-  //   // loop through the dataCarouselArray
-  //   for (let i = 0; i < dataCarouselArray.length; i++) {
-  //     // determines position of currentImageIndex
-  //     if (dataCarouselArray[i].thumbnail === srcTag) {
-  //       // if the previous button was clicked
-  //       currentImageIndex = i - 1;
-  //     };
-  //     console.log(i);
-  //   };
-  //   // delete the data from the dataCarouselArray
-  //   dataCarouselArray.slice(currentImageIndex, 1);
-  //   // delete the currentImage
-  //   $(event.currentTarget).remove();
-  //   // put up the first image in the array
+  const removeCard = (event) => {
+    // empty #current-book div
+    $("#current-book").empty();
+    // find the src of the currentImage
+    let srcTag = $(".showImage").children().attr("src");
+    // declare currentImageIndex to a default of 0
+    let currentImageIndex = 0;
+    // loop through the dataCarouselArray
+    for (let i = 0; i < dataCarouselArray.length; i++) {
+      // determines position of currentImageIndex
+      if (dataCarouselArray[i].thumbnail === srcTag) {
+        // if the previous button was clicked
+        currentImageIndex = i;
+        };
+    };
+    // delete the data from the dataCarouselArray
+    dataCarouselArray.splice(currentImageIndex, 1);
+    // delete the currentImage
+    $(event.currentTarget).parent().remove();
+    // put up the first image in the array
+    if (dataCarouselArray.length > 0) {
+      // select the images in the div, make sure they have a class of "hideImage" and remove any that may "showImage"
+      $("#carousel-images").children().removeClass("showImage").addClass("hideImage");
+      // select the first item in the array
+      $currentImage = $("#carousel-images").children().eq(0);
+      // add a class of showImage to only the first image in the array
+      $currentImage.removeClass("hideImage").addClass("showImage");
+      generateCard(0);
+    };
   };
 
   // function that creates myBookCards in the html
