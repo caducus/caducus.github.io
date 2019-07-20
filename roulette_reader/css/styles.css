@@ -236,7 +236,7 @@
 | | Browser Design
 ========================= */
 
-  @media only screen and (min-width: 800px) {
+  @media screen and (min-width: 800px) {
 
   /* =========== Main Content =========== */
 
