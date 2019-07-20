@@ -58,14 +58,20 @@
   /* =========== Main Content =========== */
 
     main {
+      display: flex;
+      flex-direction: column;
       background-color: #e8d6d5;
       margin-top: 2%;
-      margin-bottom: 2%;
+      margin-bottom: 10%;
+    }
+
+    #saved-list {
+      order: -1;
     }
 
     /* =========== Generated Cards =========== */
 
-    .card {
+    .tempCard {
       display: flex;
       margin-top: 2%;
       border-top: 2px solid #bc8682;
@@ -96,7 +102,7 @@
       font-family: 'Comfortaa', cursive;
     }
 
-    .outerContainer button {
+    .innerContainer button {
       background-color: #82b8bc;
       border: 1px solid white;
       border-radius: 2px;
@@ -113,18 +119,17 @@
       text-align: right;
     }
 
-    .hidden {
+    .hiddenText {
       display: none;
     }
 
     /* =========== Image Carousel =========== */
 
-    .carousel-container {
+    #carousel-container {
       margin: 0 auto;
       margin-top: 5%;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      align-content: center;
       padding-left: 5%;
       padding-right: 5%;
     }
@@ -132,13 +137,35 @@
     .carousel-button {
       margin-left: 5%;
       margin-right: 5%;
+      align-self: center;
     }
 
-    .carousel-images {
+    #carousel-images {
+      margin: 0 auto;
+      margin-top: 5%;
       width: 30%;
-      height: 200px;
-      border: 1px solid #bc8682;
-      background-color: white;
+    }
+
+    .bookCoverDiv {
+      margin: 0 auto;
+      text-align: center;
+      width: 100%;
+    }
+
+    #carousel-images img {
+      width: 100%
+      height: auto;
+    }
+
+    .hideImage {
+      display: none;
+    }
+
+    /* =========== Current Book Card =========== */
+
+    .myBookCard {
+      margin-left: 5%;
+      margin-right: 5%;
     }
 
   /* =========== Footer =========== */
@@ -156,24 +183,28 @@
 | | Browser Design
 ========================= */
 
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 800px) {
 
   /* =========== Main Content =========== */
 
   main {
-    display: flex;
     justify-content: space-between;
+    flex-direction: row;
+  }
+
+  #saved-list {
+    order: 0;
   }
 
     /* =========== Generated Cards =========== */
 
-    #information {
+    #generated-list {
       overflow-y: scroll;
       height: 500px;
       width: 48%;
     }
 
-    #myReader {
+    #saved-list {
       overflow-y:scroll;
       height: 500px;
       width: 48%;
@@ -185,7 +216,7 @@
 
     /* =========== Image Carousel =========== */
 
-    .carousel-container {
+    #carousel-container {
       padding-right: 50px;
     }
 

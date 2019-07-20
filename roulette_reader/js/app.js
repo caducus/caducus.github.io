@@ -8,51 +8,98 @@ $(() => {
   // the api key needed to access google books
   const apiKey = "AIzaSyDxujG3pEo1LFJPKORWqOb0tto-mDuYm5Q";
 
-  // counter variable for the current image index of the image carousel
-  let currentImgIndex = 0;
-
-  // the array that holds the temporary bookCard data
+  // the array that holds the tempCard data
   let bookCardArray = [];
 
-  // the array to hold the images in the carousel
-  const imageCarouselArray = [];
-
-  // the array that holds the corrosponding data for the book images saved in the carousel
+  // the array that holds the more permanent myBookCard data
   const dataCarouselArray = [];
 
   // ===========================
   // Functions
   // ===========================
 
-  // an event handler assigned to the buttons generated in the bookCards
+  // an event handler assigned to the buttons generated in the tempCards and myBookCards
+  // toggles the visibility of the descriptions of the cards
   const showDescription = (event) => {
     // prevent reloading
     event.preventDefault();
     // selects the description box
     $description = $(event.currentTarget).parent().siblings(".description");
     // toggles the hidden class on and off the description box
-    $description.toggleClass("hidden");
+    $description.toggleClass("hiddenText");
   };
 
-  const generateMyBook = () => {
-    console.log("does something");
+  // function that creates myBookCards in the html
+  // takes a parameter of currentBook, which is the array position of the object in the dataCarouselArray
+  const generateCard = (currentBook) => {
+    // empty #current-book div
+    $("#current-book").empty();
+    // create an empty myBookCard
+    $myBookCard = $("<div>").addClass("myBookCard");
+    // create h2 title
+    $title = $("<h2>").text(dataCarouselArray[currentBook].title);
+    // create innerContainer div, which holds a div with two h3s, and a button
+    $innerContainer = $("<div>").addClass("innerContainer");
+    // create the div that holds the two h3s
+    $div = $("<div>")
+    // create the two h3 elements
+    $author = $("<h3>").text(dataCarouselArray[currentBook].author);
+    $category = $("<h3>").text(dataCarouselArray[currentBook].genre);
+    // create the button
+    $button = $("<button>").text("more");
+    // add event listener to button
+    $button.on("click", showDescription);
+    //create the div that holds the description, and create the description
+    $descriptionDiv = $("<div>").addClass("description").addClass("hiddenText");
+    $description = $("<p>").text(dataCarouselArray[currentBook].description);
+    // append the elements to respective parents
+    $innerContainer.append($div).append($button);
+    $div.append($author).append($category);
+    $descriptionDiv.append($description);
+    // append the completed parent/child elements to $myBookCard
+    $myBookCard.append($title).append($innerContainer).append($descriptionDiv);
+    // append the card to the page
+    $("#current-book").append($myBookCard);
   };
 
-  // an event handler assigned to the images generate in the bookCards
+  // runs when moving a tempCard from the generated list to the .current-book div
+  // adds a bookCover image to the image carousel, invokes the generateCard function
+  const makeBookCover = () => {
+    // select the current book
+    let currentBook = dataCarouselArray.length - 1
+    // create an image element to hold the bookCover
+    $bookCover = $("<img>")
+      // if there is more than one book covers in the carousel
+      if (currentBook > 0) {
+        // hide the previous image
+        $("#carousel-images").children().eq(dataCarouselArray.length - 2).removeClass("showImage").addClass("hideImage");
+      };
+    // create a div to hold the image
+    $bookCoverDiv = $("<div>").addClass("bookCoverDiv").addClass("showImage");
+    // add the correct source to the image element
+    $bookCover.attr("src", (dataCarouselArray[currentBook].thumbnail));
+    // append the image to the bookCoverDiv
+    $bookCoverDiv.append($bookCover)
+    // append the bookCover to the proper place
+    $("#carousel-images").append($bookCoverDiv);
+    generateCard(currentBook);
+  };
+
+  // an event handler assigned to the images generated in the tempCards
+  // begins the process of removing the tempCard and creating myBookCard
   const saveBook = (event) => {
     // prevent reloading
     event.preventDefault();
     //get the value from the image, which corrosponds with the data in the bookCardArray
     const selectedCard = $(event.currentTarget).attr("value");
-    // select the whole card
+    // select the whole tempCard
     $card = $(event.currentTarget).parent().parent();
-    // remove the card from the list of bookCards
+    // remove the tempCard from the list of bookCards
     $card.remove();
-    // push the information from the card removed to the image/data CarouselArrays
-    imageCarouselArray.push(bookCardArray[selectedCard].thumbnail);
+    // push the information from the tempCard removed to the dataCarouselArray
     dataCarouselArray.push(bookCardArray[selectedCard]);
-    // invoke the generateMyBook function
-    generateMyBook();
+    // invoke the makeBookCover function
+    makeBookCover();
   };
 
   // generates a list of 10 books based on the user's input
@@ -60,7 +107,7 @@ $(() => {
     // prevent reloading
     event.preventDefault();
     // clear old cards from the #information div
-    $("#information").empty();
+    $("#generated-list").empty();
     // empties the bookCardArray
     bookCardArray = [];
     // get the user's keyword from the input
@@ -81,10 +128,11 @@ $(() => {
             description: data.items[i].volumeInfo.description || "No description is available.",
             thumbnail: data.items[i].volumeInfo.imageLinks.thumbnail
           };
+          // pushes the book object into the temporary bookCardArray
           bookCardArray.push(bookObject);
-          // creating the bookCard on the html starts here
-          // create an empty card
-          $card = $("<div>").addClass("card");
+          // creating the tempCard on the html starts here
+          // create an empty tempCard
+          $tempCard = $("<div>").addClass("tempCard");
           // create a div to hold an image
           $imageDiv = $("<div>").addClass("imageDiv");
           // create image
@@ -103,11 +151,11 @@ $(() => {
           $author = $("<h3>").text(data.items[i].volumeInfo.authors || "No author is available.");
           $category = $("<h3>").text(data.items[i].volumeInfo.categories || "No category is available.");
           // create the button
-          $button = $("<button>").text("show description");
+          $button = $("<button>").text("more");
           // add event listener to button
           $button.on("click", showDescription);
           //create the div that holds the description, and create the description
-          $descriptionDiv = $("<div>").addClass("description").addClass("hidden");
+          $descriptionDiv = $("<div>").addClass("description").addClass("hiddenText");
           $description = $("<p>").text(data.items[i].volumeInfo.description || "No description is available.");
           // append the elements to respective parents
           $outerContainer.append($title).append($innerContainer).append($descriptionDiv);
@@ -115,10 +163,10 @@ $(() => {
           $div.append($author).append($category);
           $descriptionDiv.append($description);
           $imageDiv.append($image);
-          // append the completed parent/child elements to the $card
-          $card.append($imageDiv).append($outerContainer);
-          // append the card to the page
-          $("#information").append($card);
+          // append the completed parent/child elements to the $tempCard
+          $tempCard.append($imageDiv).append($outerContainer);
+          // append the tempCard to the page
+          $("#generated-list").append($tempCard);
         };
       },
       () => {
@@ -128,8 +176,53 @@ $(() => {
     );
   };
 
-  const cycleImages = () => {
-    console.log("I have been clicked.");
+  // allows the user to move forward and back in the image carousel of saved myBookCards
+  const cycleImages = (event) => {
+    event.preventDefault();
+    // grab the identity of the button clicked
+    let direction = $(event.currentTarget).attr("id");
+    // find the current image that is selected
+    let srcTag = $(".showImage").children().attr("src");
+    // declare currentImageIndex to a default of 0
+    let currentImageIndex = 0;
+    // loop through the dataCarouselArray
+    for (let i = 0; i < dataCarouselArray.length; i++) {
+      // determines position of currentImageIndex
+      if (dataCarouselArray[i].thumbnail === srcTag) {
+        // if the previous button was clicked
+        if (direction === "previous") {
+          // decrement currentImageIndex
+          currentImageIndex = i - 1;
+        // if the next button was clicked
+        } else if (direction === "next") {
+          // increment currentImageIndex
+          currentImageIndex = i + 1;
+        };
+      };
+    };
+
+    // if the array is at the beginning, reset the number to the end
+    if (currentImageIndex === (-1)) {
+      currentImageIndex = dataCarouselArray.length - 1;
+    // if the array is at the end, reset the number to the beginning
+    } else if (currentImageIndex > dataCarouselArray.length - 1) {
+      currentImageIndex = 0;
+    };
+
+    // if the array.length is 1, do nothing
+    if (dataCarouselArray.length === 1) {
+      console.log("I am a helpful notice that nothing should be happening right now!");
+    // if the array.length is greater than 1
+    } else {
+      // hide the image that currently has a class of showImage
+      $(".showImage").addClass("hideImage").removeClass("showImage");
+      // select the image that needs to be show
+      $currentImage = $("#carousel-images").children().eq(currentImageIndex);
+      // show the new current image
+      $currentImage.removeClass("hideImage").addClass("showImage");
+      // generate corrosponding myBookCard
+      generateCard(currentImageIndex);
+    };
   };
 
   // ===========================
@@ -142,5 +235,7 @@ $(() => {
   // tied to the next button for the image carousel
   $("#next").on("click", cycleImages);
 
+  // tied to the previous button for the image carousel
+  $("#previous").on("click", cycleImages);
 
 });
