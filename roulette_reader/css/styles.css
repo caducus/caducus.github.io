@@ -208,7 +208,7 @@
       width: 90%;
       border-radius: 5px;
       border: 1px solid #bc8682;
-      padding: 2%;
+      padding: 5% 2% 2% 2%;
       box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
       overflow-y: scroll;
     }
