@@ -14,6 +14,9 @@ $(() => {
   // the array that holds the more permanent myBookCard data
   const dataCarouselArray = [];
 
+  // the array that holds the suggested search terms for the "spin the wheel" button
+  const suggestedSearch = ["trashy romance", "harry potter", "bitcoin", "fancy dragon", "enviromental trouble", "historical biography", "movie trivia", "political science", "unicorn", "dr suess"];
+
   // ===========================
   // Functions
   // ===========================
@@ -58,13 +61,13 @@ $(() => {
       $currentImage = $("#carousel-images").children().eq(0);
       // add a class of showImage to only the first image in the array
       $currentImage.removeClass("hideImage").addClass("showImage");
-      generateCard(0);
+      generateMyCard(0);
     };
   };
 
   // function that creates myBookCards in the html
   // takes a parameter of currentBook, which is the array position of the object in the dataCarouselArray
-  const generateCard = (currentBook) => {
+  const generateMyCard = (currentBook) => {
     // empty #current-book div
     $("#current-book").empty();
     // create an empty myBookCard
@@ -96,7 +99,7 @@ $(() => {
   };
 
   // runs when moving a tempCard from the generated list to the .current-book div
-  // adds a bookCover image to the image carousel, invokes the generateCard function
+  // adds a bookCover image to the image carousel, invokes the generateMyCard function
   const makeBookCover = () => {
     // select the current book
     let currentBook = dataCarouselArray.length - 1
@@ -117,7 +120,7 @@ $(() => {
     $bookCoverDiv.append($bookCover)
     // append the bookCover to the proper place
     $("#carousel-images").append($bookCoverDiv);
-    generateCard(currentBook);
+    generateMyCard(currentBook);
   };
 
   // an event handler assigned to the images generated in the tempCards
@@ -137,17 +140,9 @@ $(() => {
     makeBookCover();
   };
 
-  // generates a list of 10 books based on the user's input
-  const generateList = (event) => {
-    // prevent reloading
-    event.preventDefault();
-    // clear old cards from the #information div
-    $("#generated-list").empty();
-    // empties the bookCardArray
-    bookCardArray = [];
-    // get the user's keyword from the input
-    const keyword = $("input[type='text']").val();
-
+  // function that creates tempCards in the html
+  // takes a parameter of keyword
+  const generateTempCard = (keyword) => {
     // connecting to the googlebooks api
     $.ajax({
       url: "https://www.googleapis.com/books/v1/volumes?q=" + keyword + "&key=" + apiKey
@@ -211,6 +206,20 @@ $(() => {
     );
   };
 
+  // generates a list of 10 books based on the user's input
+  const generateList = (event) => {
+    // prevent reloading
+    event.preventDefault();
+    // clear old cards from the #information div
+    $("#generated-list").empty();
+    // empties the bookCardArray
+    bookCardArray = [];
+    // get the user's keyword from the input
+    const keyword = $("input[type='text']").val();
+    // call on the api to do the search and generate up to 10 temporary cards
+    generateTempCard(keyword);
+  };
+
   // allows the user to move forward and back in the image carousel of saved myBookCards
   const cycleImages = (event) => {
     event.preventDefault();
@@ -256,7 +265,7 @@ $(() => {
       // show the new current image
       $currentImage.removeClass("hideImage").addClass("showImage");
       // generate corrosponding myBookCard
-      generateCard(currentImageIndex);
+      generateMyCard(currentImageIndex);
     };
   };
 
@@ -273,12 +282,19 @@ $(() => {
 
   // an event handler tied to the "rouletteReader" button
   // selects a random book from the books the user has chosen
-  const pickRandomBook = () => {
-    let randomNumber = 0;
-    // checks to see if the use has 0 or 1 book in their
-    if (dataCarouselArray.length > 1) {
-      randomNumber = rollDice(dataCarouselArray.length);
-    };
+  const pickRandomList = () => {
+    // prevent reloading
+    event.preventDefault();
+    // pick a random index number
+    let randomIndex = rollDice(suggestedSearch.length);
+    // use the random index number to find a random keyword
+    let keyword = suggestedSearch[randomIndex];
+    // clear old cards from the #information div
+    $("#generated-list").empty();
+    // empties the bookCardArray
+    bookCardArray = [];
+    // call on the api to do the search and generate up to 10 temporary cards
+    generateTempCard(keyword);
   };
 
   // ===========================
@@ -300,7 +316,7 @@ $(() => {
   // tied to the close button, closes the modal
   $("#closeModal").on("click", modal);
 
-  // tied to the "pick a book" button, chooses a random book from the user-choice list
-  $("#rouletteReader").on("click", pickRandomBook)
+  // tied to the "spin the wheel" button, chooses a random subject to suggest a list of tempCards to the user
+  $("#rouletteReader").on("click", pickRandomList)
 
 });
