@@ -15,7 +15,7 @@ $(() => {
   const dataCarouselArray = [];
 
   // the array that holds the suggested search terms for the "spin the wheel" button
-  const suggestedSearch = ["trashy romance", "harry potter", "bitcoin", "fancy dragon", "enviromental trouble", "historical biography", "movie trivia", "political science", "unicorn", "dr suess"];
+  const suggestedSearch = ["cooking", "baking", "barbeque", "sushi", "wine", "whiskey", "cocktail", "fiction", "science fiction", "fantasy", "dragon", "unicorn", "trashy romance", "harlequinn", "bodice ripper", "western", "spy thriller", "juvenille picture book", "disney", "dr suess", "descendants", "rick riordan", "harry potter", "business profile", "economics", "bitcoin", "nature and wildlife", "environment", "musical biography", "historical biography", "world war II", "domestic affairs", "current affairs", "world affairs", "world war I", "civil war", "modern warfare", "weapons of war", "movie trivia", "drama", "poetry", "shakespeare", "parenting help", "self improvement", "new age", "hippy dippy bullshit", "science", "mathematics", "physics", "biology", "chemisty", "computer science", "javascript", "python", "ruby on rails", "computers for dummies", "reference", "atlas", "transportation", "how to write a novel", "religion", "eastern religion", "bible", "james patterson", "danielle steel", "mitch albom", "tom clancy", "clive cussler", "dan brown", "mary higgins clark", "george martin", "robert jordan", "douglass adams", "true crime", "mystery", "comic book", "marvel", "x-men", "daredevil", "deadpool", "iron man", "preacher", "manga", "naruto", "bleach", "graphic novel", "rpg", "mo williems", "evil dead"];
 
   // ===========================
   // Functions
