@@ -168,6 +168,28 @@
       margin-right: 5%;
     }
 
+    /* =========== Current Book Card =========== */
+
+    #rouletteButtonDiv {
+      text-align: center;
+    }
+
+    #rouletteReader {
+      background-color: #bc8682;
+      border: 1px solid white;
+      border-radius: 2px;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 2%;
+      margin-bottom: 2%;
+    }
+
+    .hiddenButton {
+      display: none;
+    }
+
   /* =========== Footer =========== */
 
     footer {
@@ -208,7 +230,7 @@
       width: 90%;
       border-radius: 5px;
       border: 1px solid #bc8682;
-      padding: 5% 2% 2% 2%;
+      padding: 10% 2% 2% 2%;
       box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
       overflow-y: scroll;
     }

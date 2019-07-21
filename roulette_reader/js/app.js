@@ -266,6 +266,21 @@ $(() => {
     $("#modalAbout").toggleClass("hiddenModal");
   };
 
+  // a function to get a random number between 0 and the maxNumber parameter
+  const rollDice = (maxNumber) => {
+    return Math.floor(Math.random() * Math.floor(maxNumber))
+  };
+
+  // an event handler tied to the "rouletteReader" button
+  // selects a random book from the books the user has chosen
+  const pickRandomBook = () => {
+    let randomNumber = 0;
+    // checks to see if the use has 0 or 1 book in their
+    if (dataCarouselArray.length > 1) {
+      randomNumber = rollDice(dataCarouselArray.length);
+    };
+  };
+
   // ===========================
   // Event Listeners / Handlers
   // ===========================
@@ -284,5 +299,8 @@ $(() => {
 
   // tied to the close button, closes the modal
   $("#closeModal").on("click", modal);
+
+  // tied to the "pick a book" button, chooses a random book from the user-choice list
+  $("#rouletteReader").on("click", pickRandomBook)
 
 });
