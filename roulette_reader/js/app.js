@@ -63,8 +63,8 @@ $(() => {
       $currentImage.removeClass("hideImage").addClass("showImage");
       // generate myBookCard for the first item in the array
       generateMyCard(0);
-      // update the localStorage
-      updateLocalStorage();
+      // // update the localStorage
+      // updateLocalStorage();
     };
   };
 
@@ -139,8 +139,8 @@ $(() => {
     $card.remove();
     // push the information from the tempCard removed to the dataCarouselArray
     dataCarouselArray.push(bookCardArray[selectedCard]);
-    // update the localStorage
-    updateLocalStorage();
+    // // update the localStorage
+    // updateLocalStorage();
     // invoke the makeBookCover function
     makeBookCover();
   };
@@ -307,19 +307,19 @@ $(() => {
   // Check Local Storage for Array
   // ===========================
 
-  // function to update localStorage when a change is made to the dataCarouselArray
- const updateLocalStorage = () => {
-   localStorage.clear();
-   localStorage.setItem("savedData", dataCarouselArray);
- };
-
- // checks localStorage on pageload to create user-choice list
- if (localStorage.getItem("savedData") !== null) {
-   dataCarouselArray = localStorage.getItem("savedData");
-   // run makeBookCover for all books saved in the array
-   console.log(dataCarouselArray);
-   // generate a card for the current cover;
- };
+ //  // function to update localStorage when a change is made to the dataCarouselArray
+ // const updateLocalStorage = () => {
+ //   localStorage.clear();
+ //   localStorage.setItem("savedData", dataCarouselArray);
+ // };
+ //
+ // // checks localStorage on pageload to create user-choice list
+ // if (localStorage.getItem("savedData") !== null) {
+ //   const tempData = localStorage.getItem("savedData");
+ //   // run makeBookCover for all books saved in the array
+ //   console.log(dataCarouselArray);
+ //   // generate a card for the current cover;
+ // };
 
   // ===========================
   // Event Listeners / Handlers
