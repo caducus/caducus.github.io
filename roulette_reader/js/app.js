@@ -15,7 +15,7 @@ $(() => {
   const dataCarouselArray = [];
 
   // the array that holds the suggested search terms for the "spin the wheel" button
-  const suggestedSearch = ["cooking", "baking", "barbeque", "sushi", "wine", "whiskey", "cocktail", "fiction", "science fiction", "fantasy", "dragon", "unicorn", "trashy romance", "harlequinn", "bodice ripper", "western", "spy thriller", "juvenille picture book", "disney", "dr suess", "descendants", "rick riordan", "harry potter", "business profile", "economics", "bitcoin", "nature and wildlife", "environment", "musical biography", "historical biography", "world war II", "domestic affairs", "current affairs", "world affairs", "world war I", "civil war", "modern warfare", "weapons of war", "movie trivia", "drama", "poetry", "shakespeare", "parenting help", "self improvement", "new age", "hippy dippy bullshit", "science", "mathematics", "physics", "biology", "chemisty", "computer science", "javascript", "python", "ruby on rails", "computers for dummies", "reference", "atlas", "transportation", "how to write a novel", "religion", "eastern religion", "bible", "james patterson", "danielle steel", "mitch albom", "tom clancy", "clive cussler", "dan brown", "mary higgins clark", "george martin", "robert jordan", "douglass adams", "true crime", "mystery", "comic book", "marvel", "x-men", "daredevil", "deadpool", "iron man", "preacher", "manga", "naruto", "bleach", "graphic novel", "rpg", "mo williems", "evil dead"];
+  const suggestedSearch = ["cooking", "baking", "barbeque", "sushi", "wine", "whiskey", "cocktail", "fiction", "science fiction", "fantasy", "dragon", "unicorn", "trashy romance", "harlequinn", "bodice ripper", "western", "spy thriller", "juvenille picture book", "disney", "dr suess", "descendants", "rick riordan", "harry potter", "business profile", "economics", "bitcoin", "nature and wildlife", "environment", "musical biography", "historical biography", "world war II", "domestic affairs", "current affairs", "world affairs", "world war I", "civil war", "modern warfare", "weapons of war", "movie trivia", "drama", "poetry", "shakespeare", "parenting help", "self improvement", "new age", "hippy dippy bullshit", "science", "mathematics", "physics", "biology", "chemisty", "computer science", "javascript", "python", "ruby on rails", "computers for dummies", "reference", "atlas", "transportation", "how to write a novel", "religion", "eastern religion", "bible", "james patterson", "danielle steel", "mitch albom", "tom clancy", "clive cussler", "dan brown", "mary higgins clark", "george martin", "robert jordan", "douglass adams", "true crime", "mystery", "comic book", "marvel", "x-men", "daredevil", "deadpool", "iron man", "preacher", "manga", "naruto", "bleach", "graphic novel", "rpg", "mo williems", "evil dead", "sumo wrestling", "hibachi"];
 
   // ===========================
   // Functions
@@ -206,6 +206,7 @@ $(() => {
     );
   };
 
+  // event handler tied to the "submit" button
   // generates a list of 10 books based on the user's input
   const generateList = (event) => {
     // prevent reloading
@@ -304,16 +305,16 @@ $(() => {
   // tied to the "submit" button on the html upon load
   $("#generate").on("click", generateList);
 
-  // tied to the next button for the image carousel
+  // tied to the "next" button for the image carousel
   $("#next").on("click", cycleImages);
 
-  // tied to the previous button for the image carousel
+  // tied to the "previous" button for the image carousel
   $("#previous").on("click", cycleImages);
 
-  // tied to the about button, opens the modal
+  // tied to the "about" button, opens the modal
   $("#about").on("click", modal);
 
-  // tied to the close button, closes the modal
+  // tied to the "close" button, closes the modal
   $("#closeModal").on("click", modal);
 
   // tied to the "spin the wheel" button, chooses a random subject to suggest a list of tempCards to the user
