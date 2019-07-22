@@ -12,7 +12,7 @@ $(() => {
   let bookCardArray = [];
 
   // the array that holds the more permanent myBookCard data
-  const dataCarouselArray = [];
+  let dataCarouselArray = [];
 
   // the array that holds the suggested search terms for the "spin the wheel" button
   const suggestedSearch = ["cooking", "baking", "barbeque", "sushi", "wine", "whiskey", "cocktail", "fiction", "science fiction", "fantasy", "dragon", "unicorn", "trashy romance", "harlequinn", "bodice ripper", "western", "spy thriller", "juvenille picture book", "disney", "dr suess", "descendants", "rick riordan", "harry potter", "business profile", "economics", "bitcoin", "nature and wildlife", "environment", "musical biography", "historical biography", "world war II", "domestic affairs", "current affairs", "world affairs", "world war I", "civil war", "modern warfare", "weapons of war", "movie trivia", "drama", "poetry", "shakespeare", "parenting help", "self improvement", "new age", "hippy dippy bullshit", "science", "mathematics", "physics", "biology", "chemisty", "computer science", "javascript", "python", "ruby on rails", "computers for dummies", "reference", "atlas", "transportation", "how to write a novel", "religion", "eastern religion", "bible", "james patterson", "danielle steel", "mitch albom", "tom clancy", "clive cussler", "dan brown", "mary higgins clark", "george martin", "robert jordan", "douglass adams", "true crime", "mystery", "comic book", "marvel", "x-men", "daredevil", "deadpool", "iron man", "preacher", "manga", "naruto", "bleach", "graphic novel", "rpg", "mo williems", "evil dead", "sumo wrestling", "hibachi"];
@@ -61,7 +61,10 @@ $(() => {
       $currentImage = $("#carousel-images").children().eq(0);
       // add a class of showImage to only the first image in the array
       $currentImage.removeClass("hideImage").addClass("showImage");
+      // generate myBookCard for the first item in the array
       generateMyCard(0);
+      // update the localStorage
+      updateLocalStorage();
     };
   };
 
@@ -136,6 +139,8 @@ $(() => {
     $card.remove();
     // push the information from the tempCard removed to the dataCarouselArray
     dataCarouselArray.push(bookCardArray[selectedCard]);
+    // update the localStorage
+    updateLocalStorage();
     // invoke the makeBookCover function
     makeBookCover();
   };
@@ -297,6 +302,24 @@ $(() => {
     // call on the api to do the search and generate up to 10 temporary cards
     generateTempCard(keyword);
   };
+
+  // ===========================
+  // Check Local Storage for Array
+  // ===========================
+
+  // function to update localStorage when a change is made to the dataCarouselArray
+ const updateLocalStorage = () => {
+   localStorage.clear();
+   localStorage.setItem("savedData", dataCarouselArray);
+ };
+
+ // checks localStorage on pageload to create user-choice list
+ if (localStorage.getItem("savedData") !== null) {
+   dataCarouselArray = localStorage.getItem("savedData");
+   // run makeBookCover for all books saved in the array
+   console.log(dataCarouselArray);
+   // generate a card for the current cover;
+ };
 
   // ===========================
   // Event Listeners / Handlers
