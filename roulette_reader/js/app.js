@@ -15,7 +15,7 @@ $(() => {
   let dataCarouselArray = [];
 
   // the array that holds the suggested search terms for the "spin the wheel" button
-  const suggestedSearch = ["cooking", "baking", "barbeque", "sushi", "wine", "whiskey", "cocktail", "fiction", "science fiction", "fantasy", "dragon", "unicorn", "trashy romance", "harlequinn", "bodice ripper", "western", "spy thriller", "juvenille picture book", "disney", "dr suess", "descendants", "rick riordan", "harry potter", "business profile", "economics", "bitcoin", "nature and wildlife", "environment", "musical biography", "historical biography", "world war II", "domestic affairs", "current affairs", "world affairs", "world war I", "civil war", "modern warfare", "weapons of war", "movie trivia", "drama", "poetry", "shakespeare", "parenting help", "self improvement", "new age", "hippy dippy bullshit", "science", "mathematics", "physics", "biology", "chemisty", "computer science", "javascript", "python", "ruby on rails", "computers for dummies", "reference", "atlas", "transportation", "how to write a novel", "religion", "eastern religion", "bible", "james patterson", "danielle steel", "mitch albom", "tom clancy", "clive cussler", "dan brown", "mary higgins clark", "george martin", "robert jordan", "douglass adams", "true crime", "mystery", "comic book", "marvel", "x-men", "daredevil", "deadpool", "iron man", "preacher", "manga", "naruto", "bleach", "graphic novel", "rpg", "mo williems", "evil dead", "sumo wrestling", "hibachi"];
+  const suggestedSearch = ["cooking", "baking", "barbeque", "sushi", "wine", "whiskey", "cocktail", "fiction", "science fiction", "fantasy", "dragon", "unicorn", "trashy romance", "harlequinn", "bodice ripper", "western", "spy thriller", "juvenille picture book", "disney", "dr suess", "descendants", "melissa de la cruz", "rick riordan", "harry potter", "business profile", "economics", "bitcoin", "nature and wildlife", "environment", "musical biography", "historical biography", "world war II", "domestic affairs", "current affairs", "world affairs", "world war I", "civil war", "modern warfare", "weapons of war", "movie trivia", "drama", "poetry", "shakespeare", "parenting help", "self improvement", "new age", "hippy dippy bullshit", "science", "mathematics", "physics", "biology", "chemisty", "computer science", "javascript", "python", "ruby on rails", "computers for dummies", "reference", "atlas", "transportation", "how to write a novel", "religion", "eastern religion", "bible", "james patterson", "danielle steel", "mitch albom", "tom clancy", "clive cussler", "dan brown", "mary higgins clark", "george martin", "robert jordan", "douglass adams", "diana gabaldon", "john grisham", "stephen king", "haruki murakami", "jodi picoult", "jodi picoult", "zane", "true crime", "ted bundy", "serial killer", "anne rule", "mystery", "comic book", "marvel", "x-men", "daredevil", "deadpool", "iron man", "preacher", "manga", "naruto", "bleach", "graphic novel", "rpg", "mo williems", "evil dead", "sumo wrestling", "hibachi", "martha stewart", "snoop dogg"];
 
   // ===========================
   // Functions
@@ -317,7 +317,8 @@ $(() => {
  // if (localStorage.getItem("savedData") !== null) {
  //   const tempData = localStorage.getItem("savedData");
  //   // run makeBookCover for all books saved in the array
- //   console.log(dataCarouselArray);
+ //   console.log(tempData);
+ //   console.log(tempData);
  //   // generate a card for the current cover;
  // };
 
