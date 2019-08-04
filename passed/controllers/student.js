@@ -24,19 +24,19 @@ router.get("/seed", (req, res) => {
 
 router.get("/", (req, res) => {
   SkillEntry.find({}, (error, foundSkills) => {
-    res.render("index.ejs", {
+    res.render("student/index.ejs", {
       allSkills: foundSkills
     });
   });
 });
 
 router.get("/new", (req, res) => {
-  res.render("new.ejs");
+  res.render("student/new.ejs");
 });
 
 router.get("/:id", (req, res) => {
   SkillEntry.findById(req.params.id, (error, foundEntry) => {
-    res.render("show.ejs", {
+    res.render("student/show.ejs", {
       thisEntry: foundEntry
     });
   });

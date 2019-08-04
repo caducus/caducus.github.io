@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <% include ../partials/head.ejs %>
+  </head>
+  <body>
+    <h1>P.A.S.S.E.D</h1>
+    <h2>Physician's Assistant Student Skill-Entry Data</h2>
+    <form>
+      <!-- fieldset for student information -->
+      <fieldset class="student-info">
+        <legend>Student Information</legend>
+        <!-- student name -->
+        <label for="studentName">Name</label>
+        <input type="text" name="studentName" id="studentName">
+        <!-- student id -->
+        <label for="studentID">ID Number</label>
+        <input type="text" name="studentID" id="studentID">
+      </fieldset>
+      <!-- fieldset for skill information -->
+      <fieldset class="skill-info">
+        <legend>Skill Entry</legend>
+        <!-- rotation -->
+        <label for="rotation">Rotation</label>
+        <select name="rotation" id="rotation">
+          <option value="rotation1">Rotation 1</option>
+          <option value="rotation2">Rotation 2</option>
+          <option value="rotation3">Rotation 3</option>
+          <option value="rotation4">Rotation 4</option>
+        </select>
+        <!-- skill -->
+        <label for="skill">Skill</label>
+        <select name="skill" id="skill">
+          <option value="rotation1">Skill 1</option>
+          <option value="rotation2">Skill 2</option>
+          <option value="rotation3">Skill 3</option>
+          <option value="rotation4">Skill 4</option>
+        </select>
+        <!-- level of control -->
+        <label for="levelOfControl">Proficiency</label>
+        <select name="levelOfControl" id="levelOfControl">
+          <option value="rotation1">1</option>
+          <option value="rotation2">2</option>
+          <option value="rotation3">3</option>
+          <option value="rotation4">4</option>
+        </select>
+        <!-- preceptor -->
+        <label for="preceptor">Preceptor</label>
+        <select name="preceptor" id="preceptor">
+          <option value="rotation1">Dr. Busybody</option>
+          <option value="rotation2">Dr. OldFuddy</option>
+          <option value="rotation3">Dr. Fussalot</option>
+          <option value="rotation4">Dr. Pepper</option>
+        </select>
+      </fieldset>
+    </form>
+  </body>
+</html>
