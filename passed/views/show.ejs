@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <% include ./partials/head.ejs %>
+  </head>
+  <body>
+    <h1>P.A.S.S.E.D</h1>
+    <h2>Physician's Assistant Student Skill-Entry Data</h2>
+    <ul>
+      <li><%=thisEntry.studentID; %></li>
+      <li><%=thisEntry.rotation; %></li>
+      <li><%=thisEntry.skill; %></li>
+      <li><%=thisEntry.levelOfControl; %></li>
+      <li><%=thisEntry.preceptor; %></li>
+    </ul>
+  </body>
+</html>

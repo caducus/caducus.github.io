@@ -23,12 +23,34 @@ router.get("/seed", (req, res) => {
 // ==========================
 
 router.get("/", (req, res) => {
-  res.render("index.ejs");
+  SkillEntry.find({}, (error, foundSkills) => {
+    res.render("index.ejs", {
+      allSkills: foundSkills
+    });
+  });
+});
+
+router.get("/new", (req, res) => {
+  res.render("new.ejs");
+});
+
+router.get("/:id", (req, res) => {
+  SkillEntry.findById(req.params.id, (error, foundEntry) => {
+    res.render("show.ejs", {
+      thisEntry: foundEntry
+    });
+  });
 });
 
 // ==========================
 // Post Route
 // ==========================
+
+router.post("/", (req, res) => {
+  SkillEntry.create(req.body, (error, createdEntry) => {
+    res.redirect("/student");
+  });
+});
 
 // ==========================
 // Put Route

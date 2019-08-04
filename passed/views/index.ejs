@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title></title>
+    <% include ./partials/head.ejs %>
   </head>
   <body>
-
+    <h1>P.A.S.S.E.D</h1>
+    <h2>Physician's Assistant Student Skill-Entry Data</h2>
+    <ul>
+      <% for (let i = 0; i < allSkills.length; i++) { %>
+        <li>
+          <a href="/student/<%=allSkills[i].id; %>">
+          <%=allSkills[i].studentID; %></a><br />
+          <%=allSkills[i].rotation; %>
+        </li>
+      <% } %>
+    </ul>
   </body>
 </html>
