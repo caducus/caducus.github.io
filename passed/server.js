@@ -40,6 +40,14 @@ app.use(methodOverride("_method"));
 app.use("/student", studentController);
 
 // ===========================
+// Get Routes
+// ===========================
+
+app.get("/", (req, res) => {
+  res.render("index.ejs")
+});
+
+// ===========================
 // Listener
 // ===========================
 

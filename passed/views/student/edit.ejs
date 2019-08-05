@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <% include ../partials/head.ejs %>
+    <script src="/js/app.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <h1>P.A.S.S.E.D</h1>
+    <h2>Physician's Assistant Student Skill-Entry Data</h2>
+    <form>
+      <!-- fieldset for student information -->
+      <fieldset class="student-info">
+        <legend>Student Information</legend>
+        <!-- student name -->
+        <label for="studentName">Name</label>
+        <input type="text" name="studentName" id="studentName" value="<%=thisEntry.studentName; %>">
+        <!-- student id -->
+        <label for="studentID">ID Number</label>
+        <input type="text" name="studentID" id="studentID" value="<%=thisEntry.studentID; %>">
+      </fieldset>
+    </form>
+  </body>
+</html>

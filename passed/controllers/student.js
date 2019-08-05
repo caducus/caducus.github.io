@@ -42,6 +42,14 @@ router.get("/:id", (req, res) => {
   });
 });
 
+router.get("/:id/edit", (req, res) => {
+  SkillEntry.findById(req.params.id, (error, foundEntry) => {
+    res.render("student/edit.ejs", {
+      thisEntry: foundEntry
+    });
+  });
+});
+
 // ==========================
 // Post Route
 // ==========================
