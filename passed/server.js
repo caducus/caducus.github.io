@@ -69,14 +69,6 @@ app.get("/", (req, res) => {
   });
 });
 
-// app.get("/student", (req, res) => {
-//   if (req.session.currentUser) {
-//     res.render("student/index.ejs");
-//   } else {
-//     res.redirect("/sessions/new");
-//   };
-// });
-
 // ===========================
 // Listener
 // ===========================
