@@ -10,7 +10,7 @@
         <% include ../partials/header.ejs %>
       </header>
       <main>
-        <form>
+        <form action="/student" method="POST">
           <!-- fieldset for student information -->
           <fieldset class="student-info">
             <legend>Student Information</legend>
@@ -32,19 +32,26 @@
             <label for="skill-list">Skill</label>
             <select name="skill" id="skill-list">
             </select>
-            <!-- level of control -->
-            <label for="loC-list">Proficiency</label>
-            <select name="levelOfControl" id="loC-list">
-              <option value="rotation1">1</option>
-              <option value="rotation2">2</option>
-              <option value="rotation3">3</option>
-              <option value="rotation4">4</option>
-            </select>
-            <!-- preceptor -->
-            <label for="preceptor-list">Preceptor</label>
-            <select name="preceptor" id="preceptor-list">
-            </select>
+            <div class="form-box1">
+              <div class="form-box2a">
+                <!-- preceptor -->
+                <label for="preceptor-list">Preceptor</label>
+                <select name="preceptor" id="preceptor-list">
+                </select>
+              </div>
+              <div class="form-box2b">
+                <!-- level of control -->
+                <label for="loC-list">Proficiency</label>
+                <select name="levelOfControl" id="loC-list">
+                  <option value="rotation1">1</option>
+                  <option value="rotation2">2</option>
+                  <option value="rotation3">3</option>
+                  <option value="rotation4">4</option>
+                </select>
+              </div>
+            </div>
           </fieldset>
+          <input type="submit" name="" value="">
         </form>
       </main>
     </div>

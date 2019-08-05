@@ -8,6 +8,14 @@ const router = express.Router();
 const SkillEntry = require("../models/skillEntry.js");
 const skillEntrySeed = require("../models/skillEntrySeed.js");
 
+const sessionsController = require("./sessions.js");
+
+// ==========================
+// Middleware
+// ==========================
+
+router.use("/sessions", sessionsController);
+
 // ==========================
 // Seed
 // ==========================
@@ -23,31 +31,47 @@ router.get("/seed", (req, res) => {
 // ==========================
 
 router.get("/", (req, res) => {
-  SkillEntry.find({}, (error, foundSkills) => {
-    res.render("student/index.ejs", {
-      allSkills: foundSkills
+  if (req.session.currentUser) {
+    SkillEntry.find({}, (error, foundSkills) => {
+      res.render("student/index.ejs", {
+        allSkills: foundSkills
+      });
     });
-  });
+  } else {
+    res.redirect("/sessions/new");
+  };
 });
 
 router.get("/new", (req, res) => {
-  res.render("student/new.ejs");
+  if (req.session.currentUser) {
+    res.render("student/new.ejs");
+  } else {
+    res.redirect("/sessions/new");
+  };
 });
 
 router.get("/:id", (req, res) => {
-  SkillEntry.findById(req.params.id, (error, foundEntry) => {
-    res.render("student/show.ejs", {
-      thisEntry: foundEntry
+  if (req.session.currentUser) {
+    SkillEntry.findById(req.params.id, (error, foundEntry) => {
+      res.render("student/show.ejs", {
+        thisEntry: foundEntry
+      });
     });
-  });
+  } else {
+    res.redirect("/sessions/new");
+  };
 });
 
 router.get("/:id/edit", (req, res) => {
-  SkillEntry.findById(req.params.id, (error, foundEntry) => {
-    res.render("student/edit.ejs", {
-      thisEntry: foundEntry
+  if (req.session.currentUser) {
+    SkillEntry.findById(req.params.id, (error, foundEntry) => {
+      res.render("student/edit.ejs", {
+        thisEntry: foundEntry
+      });
     });
-  });
+  } else {
+    res.redirect("/sessions/new");
+  };
 });
 
 // ==========================
@@ -55,9 +79,10 @@ router.get("/:id/edit", (req, res) => {
 // ==========================
 
 router.post("/", (req, res) => {
-  SkillEntry.create(req.body, (error, createdEntry) => {
-    res.redirect("/student");
-  });
+  res.send(req.body);
+  // SkillEntry.create(req.body, (error, createdEntry) => {
+  //   res.redirect("/student");
+  // });
 });
 
 // ==========================

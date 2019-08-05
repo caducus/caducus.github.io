@@ -28,12 +28,20 @@ mongoose.connect(mongoURI, {userNewUrlParser: true}, () => {
 });
 
 // ===========================
+// Fix Depreciation Warnings
+// ===========================
+
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
+// ===========================
 // Error / Success Messages
 // ===========================
 
 db.on('error', (err) => console.log(err.message + ' is mongod not running?'));
 db.on('connected', () => console.log('mongo connected: ', mongoURI));
 db.on('disconnected', () => console.log('mongo disconnected'));
+
 
 // ===========================
 // Middleware
@@ -45,7 +53,7 @@ app.use(methodOverride("_method"));
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialed: false
+  saveUninitialized: false
 }));
 app.use("/sessions", sessionsController);
 app.use("/student", studentController);
@@ -56,8 +64,18 @@ app.use("/users", userController);
 // ===========================
 
 app.get("/", (req, res) => {
-  res.render("index.ejs")
+  res.render("index.ejs", {
+    currentUser: req.session.currentUser
+  });
 });
+
+// app.get("/student", (req, res) => {
+//   if (req.session.currentUser) {
+//     res.render("student/index.ejs");
+//   } else {
+//     res.redirect("/sessions/new");
+//   };
+// });
 
 // ===========================
 // Listener
