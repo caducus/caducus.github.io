@@ -68,4 +68,10 @@ router.post("/", (req, res) => {
 // Delete Route
 // ==========================
 
+router.delete("/:id", (req, res) => {
+  SkillEntry.findByIdAndRemove(req.params.id, (error, foundEntry) => {
+    res.redirect("/student");
+  });
+});
+
 module.exports = router;
