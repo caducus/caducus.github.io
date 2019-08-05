@@ -5,43 +5,48 @@
     <script src="/js/app.js" charset="utf-8"></script>
   </head>
   <body>
-    <h1>P.A.S.S.E.D</h1>
-    <h2>Physician's Assistant Student Skill-Entry Data</h2>
-    <form>
-      <!-- fieldset for student information -->
-      <fieldset class="student-info">
-        <legend>Student Information</legend>
-        <!-- student name -->
-        <label for="studentName">Name</label>
-        <input type="text" name="studentName" id="studentName">
-        <!-- student id -->
-        <label for="studentID">ID Number</label>
-        <input type="text" name="studentID" id="studentID">
-      </fieldset>
-      <!-- fieldset for skill information -->
-      <fieldset class="skill-info">
-        <legend>Skill Entry</legend>
-        <!-- rotation -->
-        <label for="rotation-list">Rotation</label>
-        <select name="rotation" id="rotation-list">
-        </select>
-        <!-- skill -->
-        <label for="skill-list">Skill</label>
-        <select name="skill" id="skill-list">
-        </select>
-        <!-- level of control -->
-        <label for="loC-list">Proficiency</label>
-        <select name="levelOfControl" id="loC-list">
-          <option value="rotation1">1</option>
-          <option value="rotation2">2</option>
-          <option value="rotation3">3</option>
-          <option value="rotation4">4</option>
-        </select>
-        <!-- preceptor -->
-        <label for="preceptor-list">Preceptor</label>
-        <select name="preceptor" id="preceptor-list">
-        </select>
-      </fieldset>
-    </form>
+    <div class="body-wrapper">
+      <header>
+        <% include ../partials/header.ejs %>
+      </header>
+      <main>
+        <form>
+          <!-- fieldset for student information -->
+          <fieldset class="student-info">
+            <legend>Student Information</legend>
+            <!-- student name -->
+            <label for="studentName">Name</label>
+            <input type="text" name="studentName" id="studentName">
+            <!-- student id -->
+            <label for="studentID">ID Number</label>
+            <input type="text" name="studentID" id="studentID">
+          </fieldset>
+          <!-- fieldset for skill information -->
+          <fieldset class="skill-info">
+            <legend>Skill Entry</legend>
+            <!-- rotation -->
+            <label for="rotation-list">Rotation</label>
+            <select name="rotation" id="rotation-list">
+            </select>
+            <!-- skill -->
+            <label for="skill-list">Skill</label>
+            <select name="skill" id="skill-list">
+            </select>
+            <!-- level of control -->
+            <label for="loC-list">Proficiency</label>
+            <select name="levelOfControl" id="loC-list">
+              <option value="rotation1">1</option>
+              <option value="rotation2">2</option>
+              <option value="rotation3">3</option>
+              <option value="rotation4">4</option>
+            </select>
+            <!-- preceptor -->
+            <label for="preceptor-list">Preceptor</label>
+            <select name="preceptor" id="preceptor-list">
+            </select>
+          </fieldset>
+        </form>
+      </main>
+    </div>
   </body>
 </html>

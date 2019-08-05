@@ -4,22 +4,27 @@
     <% include ../partials/head.ejs %>
   </head>
   <body>
-    <h1>P.A.S.S.E.D</h1>
-    <h2>Physician's Assistant Student Skill-Entry Data</h2>
-    <ul>
-      <li><%=thisEntry.studentID; %></li>
-      <li><%=thisEntry.rotation; %></li>
-      <li><%=thisEntry.skill; %></li>
-      <li><%=thisEntry.levelOfControl; %></li>
-      <li><%=thisEntry.preceptor; %></li>
-    </ul>
-    <div class="edit-delete">
-        <form action="/student/<%=thisEntry.id; %>/edit" method="get">
-          <input type="submit" value="Edit" />
-        </form>
-        <form action="/student/<%=thisEntry.id; %>?_method=DELETE" method="POST">
-          <input type="submit" value="Delete" />
-        </form>
+    <div class="body-wrapper">
+      <header>
+        <% include ../partials/header.ejs %>
+      </header>
+      <main>
+        <ul>
+          <li><%=thisEntry.studentID; %></li>
+          <li><%=thisEntry.rotation; %></li>
+          <li><%=thisEntry.skill; %></li>
+          <li><%=thisEntry.levelOfControl; %></li>
+          <li><%=thisEntry.preceptor; %></li>
+        </ul>
+        <div class="edit-delete">
+            <form action="/student/<%=thisEntry.id; %>/edit" method="get">
+              <input type="submit" value="Edit" />
+            </form>
+            <form action="/student/<%=thisEntry.id; %>?_method=DELETE" method="POST">
+              <input type="submit" value="Delete" />
+            </form>
+        </div>
+      </main>
     </div>
   </body>
 </html>

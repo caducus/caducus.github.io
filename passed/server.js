@@ -6,7 +6,9 @@ const express = require("express");
 const methodOverride  = require('method-override');
 const mongoose = require("mongoose");
 
+const sessionsController = require("./controllers/sessions.js");
 const studentController = require("./controllers/student.js");
+const userController = require("./controllers/users.js");
 
 const app = express();
 const db = mongoose.connection;
@@ -37,7 +39,9 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 app.use(express.static("./public"));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
+app.use("/sessions", sessionsController);
 app.use("/student", studentController);
+app.use("/users", userController);
 
 // ===========================
 // Get Routes

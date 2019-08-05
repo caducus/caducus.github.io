@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <% include ../partials/head.ejs %>
+  </head>
+  <body>
+    <div class="body-wrapper">
+      <header>
+        <% include ../partials/header.ejs %>
+      </header>
+      <nav>
+        <ul>
+          <li><a href="/">Main</a></li>
+          <li><a href="/sessions/new">Log In</a></li>
+        </ul>
+      </nav>
+      <main>
+        <form action="/users" method="POST">
+          <fieldset class="student-info">
+            <legend>Create New Account</legend>
+            <!-- username -->
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" />
+            <!-- password -->
+            <label for="password">Password</label>
+            <input type="text" name="password" id="password">
+            <!-- student name -->
+            <label for="studentName">Name</label>
+            <input type="text" name="studentName" id="studentName">
+            <!-- student id -->
+            <label for="studentID">ID Number</label>
+            <input type="text" name="studentID" id="studentID">
+          </fieldset>
+          <div class="align-right">
+            <input type="submit" value="Create">
+          </div>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
