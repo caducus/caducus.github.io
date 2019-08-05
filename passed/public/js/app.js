@@ -30,7 +30,8 @@ $(() => {
   // list the options in rotationList upon load
   for (let i = 1; i < rotationsArray.length; i++) {
     $optionElement = $("<option>");
-    $optionElement.val("rotation" + [i]);
+    $optionElement.attr("id", "rotation" + [i])
+    $optionElement.val(rotationsArray[i]);
     $optionElement.text(rotationsArray[i]);
     $rotationList.append($optionElement);
   };
@@ -43,7 +44,7 @@ $(() => {
   // list the options in preceptorList upon load
   for (let i = 1; i < preceptorArray.length; i++) {
     $optionElement = $("<option>");
-    $optionElement.val("preceptor" + [i]);
+    $optionElement.val(preceptorArray[i]);
     $optionElement.text(preceptorArray[i]);
     $preceptorList.append($optionElement);
   };
@@ -54,7 +55,7 @@ $(() => {
     $skillList.empty();
 
     // select the current value of the rotation list
-    let rotationSelectedValue = $rotationList.val();
+    let rotationSelectedValue = $rotationList.children(":selected").attr("id");
 
     // save the array of skills that corrosponds with current value of the rotation list
     let skillArray = rotationSkills[rotationSelectedValue];
@@ -67,7 +68,7 @@ $(() => {
     // populate the data from the skillArray into the second list
     for (let i = 1; i < skillArray.length; i++) {
       $skillElement = $("<option>");
-      $skillElement.val("skill" + [i]);
+      $skillElement.val(skillArray[i]);
       $skillElement.text(skillArray[i]);
       $skillList.append($skillElement);
     };

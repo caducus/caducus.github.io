@@ -79,10 +79,9 @@ router.get("/:id/edit", (req, res) => {
 // ==========================
 
 router.post("/", (req, res) => {
-  res.send(req.body);
-  // SkillEntry.create(req.body, (error, createdEntry) => {
-  //   res.redirect("/student");
-  // });
+  SkillEntry.create(req.body, (error, createdEntry) => {
+    res.redirect("/student");
+  });
 });
 
 // ==========================
