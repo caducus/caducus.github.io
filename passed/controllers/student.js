@@ -64,6 +64,12 @@ router.post("/", (req, res) => {
 // Put Route
 // ==========================
 
+router.put("/:id", (req, res) => {
+  SkillEntry.findByIdAndUpdate(req.params.id, req.body, {new: true}, (error, updatedEntry) => {
+    res.redirect("/student");
+  });
+});
+
 // ==========================
 // Delete Route
 // ==========================
