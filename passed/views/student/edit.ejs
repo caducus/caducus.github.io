@@ -9,8 +9,13 @@
       <header>
         <% include ../partials/header.ejs %>
       </header>
+      <nav>
+        <form action="/sessions?_method=DELETE" method="POST">
+          <input type="submit" value="Log Out">
+        </form>
+      </nav>
       <main>
-        <form>
+        <form action="/student/<%=thisEntry.id; %>?_method=PUT" method="POST">
           <!-- fieldset for student information -->
           <fieldset class="student-info">
             <legend>Student Information</legend>
@@ -21,6 +26,7 @@
             <label for="studentID">ID Number</label>
             <input type="text" name="studentID" id="studentID" value="<%=thisEntry.studentID; %>">
           </fieldset>
+          <input type="submit" value="Edit Entry">
         </form>
       </main>
     </div>

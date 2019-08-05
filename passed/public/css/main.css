@@ -194,7 +194,7 @@
     font-size: 15px;
   }
 
-  main: input[type="submit"]:hover {
+  main input[type="submit"]:hover {
     background-color: var(--bright-blue);
     border: 1px solid black;
     font-weight: bold;
