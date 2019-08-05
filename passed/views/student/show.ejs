@@ -10,24 +10,37 @@
       </header>
       <nav>
         <form action="/sessions?_method=DELETE" method="POST">
-          <input type="submit" value="Log Out">
+          <input type="submit" class="underline" value="Log Out" />
         </form>
       </nav>
       <main>
-        <ul>
-          <li><%=thisEntry.studentID; %></li>
-          <li><%=thisEntry.rotation; %></li>
-          <li><%=thisEntry.skill; %></li>
-          <li><%=thisEntry.levelOfControl; %></li>
-          <li><%=thisEntry.preceptor; %></li>
-        </ul>
+        <div class="header-box1">
+          <div>
+            <h3><%=thisEntry.studentName; %></h3>
+          </div>
+          <div>
+            <h3>ID: <%=thisEntry.studentID; %></h3>
+          </div>
+        </div>
+        <div class="header-box2">
+          <ul class="entry-list">
+            <li>Rotation: <%=thisEntry.rotation; %></li>
+            <li>Skill: <%=thisEntry.skill; %></li>
+            <li>Preceptor: <%=thisEntry.preceptor; %></li>
+            <li>Proficiency: <%=thisEntry.levelOfControl; %></li>
+          </ul>
+        </div>
         <div class="edit-delete">
+          <div class="button-edit">
             <form action="/student/<%=thisEntry.id; %>/edit" method="get">
               <input type="submit" value="Edit" />
             </form>
+          </div>
+          <div class="button-delete">
             <form action="/student/<%=thisEntry.id; %>?_method=DELETE" method="POST">
               <input type="submit" value="Delete" />
             </form>
+          </div>
         </div>
       </main>
     </div>

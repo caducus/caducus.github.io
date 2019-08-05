@@ -9,10 +9,12 @@
         <% include ../partials/header.ejs %>
       </header>
       <nav>
-        <ul>
-          <li><a href="/">Main</a></li>
-          <li><a href="/users/new">Sign Up</a></li>
-        </ul>
+        <form action="/">
+          <input type="submit" class="underline" value="Main" />
+        </form>
+        <form action="/users/new">
+          <input type="submit" class="underline" value="Sign Up" />
+        </form>
       </nav>
       <main>
         <form class="" action="/sessions" method="POST">
@@ -23,7 +25,7 @@
             <input type="text" name="username" id="username">
             <!-- password -->
             <label for="password">Password</label>
-            <input type="text" name="password" id="password">
+            <input type="password" name="password" id="password">
           </fieldset>
           <div class="align-right">
             <input type="submit" value="Log In">

@@ -4,7 +4,7 @@ $(() => {
   // array containing the names of the rotations
   const rotationsArray = ["-- select --", "Family Medicine", "Emergency Medicine", "Internal Medicine", "Surgery", "Women's Health", "Pediatrics", "Psychiatry"];
 
-  const preceptorArray = ["-- select --", "Dr. Acula", "Dr. Busybody", "Dr. Fussalot", "Dr. OldFuddy", "Dr. Pepper"];
+  const preceptorArray = ["-- select --", "Dr. Acula", "Dr. Busybody", "Dr. Fussalot", "Dr. OldFuddy", "Dr. Pepper", "Dr. Doolittle"];
 
   // array of objects containing the skills of each rotation
   const rotationSkills = {

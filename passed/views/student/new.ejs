@@ -11,7 +11,7 @@
       </header>
       <nav>
         <form action="/sessions?_method=DELETE" method="POST">
-          <input type="submit" value="Log Out">
+          <input type="submit" class="underline" value="Log Out" />
         </form>
       </nav>
       <main>
@@ -48,15 +48,17 @@
                 <!-- level of control -->
                 <label for="loC-list">Proficiency</label>
                 <select name="levelOfControl" id="loC-list">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
+                  <option value="1">1: Observation Only</option>
+                  <option value="2">2: Participation, Heavy Supervision</option>
+                  <option value="3">3: Participation, Minimal Supervision</option>
+                  <option value="4">4: Execution, Unsupervised</option>
                 </select>
               </div>
             </div>
           </fieldset>
-          <input type="submit" name="" value="Add Entry">
+          <div class="align-right">
+            <input type="submit" name="" value="Add Entry">
+          </div>
         </form>
       </main>
     </div>
