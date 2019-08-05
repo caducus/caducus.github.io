@@ -3,8 +3,11 @@
 // =========================
 
 const express = require("express");
-const methodOverride  = require('method-override');
 const mongoose = require("mongoose");
+const methodOverride  = require('method-override');
+const session = require("express-session");
+
+require('dotenv').config();
 
 const sessionsController = require("./controllers/sessions.js");
 const studentController = require("./controllers/student.js");
@@ -17,8 +20,8 @@ const db = mongoose.connection;
 // Global Configuration
 // =========================
 
-const port = 3000;
-const mongoURI = "mongodb://localhost:27017/" + "passed";
+const port = process.env.PORT;
+const mongoURI = process.env.MONGOD_URI;
 
 mongoose.connect(mongoURI, {userNewUrlParser: true}, () => {
   console.log("The connection with MongoDB is established.");
@@ -39,6 +42,11 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 app.use(express.static("./public"));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialed: false
+}));
 app.use("/sessions", sessionsController);
 app.use("/student", studentController);
 app.use("/users", userController);
@@ -56,5 +64,5 @@ app.get("/", (req, res) => {
 // ===========================
 
 app.listen(port, () => {
-  console.log("I'm totes listenin' on port: " + port);
+  console.log("I'm totes listenin' on port: ", port);
 });

@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const skillEntrySchema = new mongoose.Schema ({
   studentID: {type: Number, required: true},
   studentName: {type: String, required: true},
