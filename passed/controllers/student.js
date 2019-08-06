@@ -32,7 +32,7 @@ router.get("/seed", (req, res) => {
 
 router.get("/", (req, res) => {
   if (req.session.currentUser) {
-    SkillEntry.find({}, (error, foundSkills) => {
+    SkillEntry.find({studentID: req.session.currentUser.studentID}, (error, foundSkills) => {
       res.render("student/index.ejs", {
         allSkills: foundSkills
       });
@@ -44,7 +44,9 @@ router.get("/", (req, res) => {
 
 router.get("/new", (req, res) => {
   if (req.session.currentUser) {
-    res.render("student/new.ejs");
+    res.render("student/new.ejs", {
+      thisUser: req.session.currentUser,
+    });
   } else {
     res.redirect("/sessions/new");
   };
@@ -66,6 +68,7 @@ router.get("/:id/edit", (req, res) => {
   if (req.session.currentUser) {
     SkillEntry.findById(req.params.id, (error, foundEntry) => {
       res.render("student/edit.ejs", {
+        thisUser: req.session.currentUser,
         thisEntry: foundEntry
       });
     });

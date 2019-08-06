@@ -9,18 +9,17 @@
         <% include ../partials/header.ejs %>
       </header>
       <nav>
+        <form action="/student">
+          <input type="submit" class="underline" value="Main" />
+        </form>
         <form action="/sessions?_method=DELETE" method="POST">
           <input type="submit" class="underline" value="Log Out" />
         </form>
       </nav>
       <main>
-        <div class="header-box1">
-          <div>
+        <div class="show-box1">
             <h3><%=thisEntry.studentName; %></h3>
-          </div>
-          <div>
             <h3>ID: <%=thisEntry.studentID; %></h3>
-          </div>
         </div>
         <div class="header-box2">
           <ul class="entry-list">

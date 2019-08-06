@@ -17,14 +17,14 @@
       <main>
         <form action="/student" method="POST">
           <!-- fieldset for student information -->
-          <fieldset class="student-info">
+          <fieldset class="student-info invisible">
             <legend>Student Information</legend>
             <!-- student name -->
             <label for="studentName">Name</label>
-            <input type="text" name="studentName" id="studentName">
+            <input type="text" name="studentName" id="studentName" value="<%=thisUser.studentName; %>" />
             <!-- student id -->
             <label for="studentID">ID Number</label>
-            <input type="text" name="studentID" id="studentID">
+            <input type="text" name="studentID" id="studentID" value="<%=thisUser.studentID; %>"/>
           </fieldset>
           <!-- fieldset for skill information -->
           <fieldset class="skill-info">
