@@ -23,7 +23,10 @@
           <% } %>
       </nav>
       <main>
-        <% if (currentUser) { %>
+        <% if (currentUser.isAdmin === true) { %>
+          <h2>Welcome, Administrator!</h2>
+          <a href="/student">Continue to a list of all student entries.</a>
+        <% } else if (currentUser) { %>
           <h2>Welcome, <%=currentUser.studentName; %>!</h2>
           <a href="/student">Continue to your list of entries.</a>
         <% } else { %>

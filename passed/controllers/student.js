@@ -31,7 +31,13 @@ router.get("/seed", (req, res) => {
 // ==========================
 
 router.get("/", (req, res) => {
-  if (req.session.currentUser) {
+  if (req.session.currentUser.isAdmin === true) {
+    SkillEntry.find({}, (error, foundStudents) => {
+      res.render("admin/index.ejs", {
+        allStudents: foundStudents
+      });
+    });
+  } else if (req.session.currentUser) {
     SkillEntry.find({studentID: req.session.currentUser.studentID}, (error, foundSkills) => {
       res.render("student/index.ejs", {
         allSkills: foundSkills

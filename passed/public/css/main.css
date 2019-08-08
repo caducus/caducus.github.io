@@ -237,6 +237,15 @@
   | | Show Route
   ===================== */
 
+  table {
+    width: 100%;
+  }
+
+  table th {
+    text-align: left;
+    border-bottom: 1px solid black;
+  }
+
   .entry-list {
     list-style: none;
     margin: 0;
