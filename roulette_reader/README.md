@@ -38,7 +38,7 @@ http://caducus.github.io/roulette_reader/
 * As a user, when I resize my browser to a smaller window, or when I view the app on my phone, its design should be responsive and easily visible.
 
 ## Project Status
-This project is currently complete, and will not be updated in future.
+This project is complete, and it is unlikely to be updated in future.
 
 ## Unsolved Issues
-Presently, this app is not connected to a database. There is no way to save and store a user's information for future visits, or even after a page refresh.
+This app is not connected to a database. There is no way to save and store a user's information for future visits, or even after a page refresh.
